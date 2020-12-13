@@ -40,4 +40,4 @@ timeline_tile: ^1.0.0
 <img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/meetup.png">
 
 <h4>Notifications & Connection</h4>
-<img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/notificationandconnection.png">
+<img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/notificationandconnection.png" heigth="400">
