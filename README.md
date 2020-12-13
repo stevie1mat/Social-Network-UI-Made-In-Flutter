@@ -34,10 +34,10 @@ timeline_tile: ^1.0.0
 <img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/homewithstatus.png">
 
 <h4>Profile</h4>
-<img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/profile.png">
+<img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/profile.png" width="500">
 
 <h4>Meetup</h4>
-<img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/meetup.png">
+<img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/meetup.png" width="500">
 
 <h4>Notifications & Connection</h4>
 <img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/notificationandconnection.png" width="500">
