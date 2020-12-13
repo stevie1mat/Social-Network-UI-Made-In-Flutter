@@ -1,6 +1,7 @@
 # Social Network UI Made In Flutter
  
  Social Network UI Made In Flutter for Android & iOS. 
+ 
  Star⭐ the repo if you like what you see😉.
 
 # Requirements
@@ -23,4 +24,4 @@ flutter_map: ^0.10.1+1
 <a href="https://pub.dev/packages/flutter_map">See on Pub.dev</a>
 
 timeline_tile: ^1.0.0
-<a href="https://pub.dev/packages/timeline_title">See on Pub.dev</a>
+<a href="https://pub.dev/packages/timeline_tile">See on Pub.dev</a>
