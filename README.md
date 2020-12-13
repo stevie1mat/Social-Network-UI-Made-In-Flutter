@@ -41,3 +41,12 @@ timeline_tile: ^1.0.0
 
 <h4>Notifications & Connection</h4>
 <img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/notificationandconnection.png" width="500">
+
+# Inspiration
+
+The UI is Inspired from the dribbble :
+<a href="https://dribbble.com/shots/14355537-Pappyon">Pappyon</a>
+
+# Author & Creator of this project
+
+Steven Mathew
