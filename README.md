@@ -1,6 +1,4 @@
-<center><img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/images/logo.png" width="35"> </center>
-
-# Social Network UI Made In Flutter
+# <img src="https://github.com/stevie1mat/Social-Network-UI-Made-In-Flutter/blob/main/images/logo.png" width="35"> Social Network UI Made In Flutter
  
  Social Network UI Made In Flutter for Android & iOS. 
  
