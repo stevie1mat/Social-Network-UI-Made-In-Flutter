@@ -4,7 +4,7 @@
  
  Star⭐ the repo if you like what you see😉.
 
-# Requirements
+# <img src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" width="35"> Requirements
 Any Operating System (ie. MacOS X, Linux, Windows)
 
 Any IDE with Flutter SDK installed (ie. IntelliJ, Android Studio, VSCode etc)
