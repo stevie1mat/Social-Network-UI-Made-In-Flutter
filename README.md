@@ -50,3 +50,4 @@ The UI is Inspired from the dribbble :
 # Author & Creator of this project
 
 Steven Mathew
+Designer @ phinstudio.com
