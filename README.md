@@ -49,6 +49,6 @@ The UI is Inspired from the dribbble :
 
 # Author & Creator of this project
 
-<b>Steven Mathew<b>
+<b>Steven Mathew</b>
  
 Designer @ phinstudio.com
