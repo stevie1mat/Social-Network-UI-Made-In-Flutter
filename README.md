@@ -48,10 +48,8 @@ The UI is Inspired from the dribbble :
 <a href="https://dribbble.com/shots/14355537-Pappyon">Pappyon</a>
 
 # Author & Creator of this project
-
-<b>Steven Mathew</b>
  
-Designer @ siyonfresh.com
+Full Stack Dev | <a href="https://stevenmathew.dev">Steven Mathew</a>
 
 # Buy Me A Coffee
 <a href="https://rzp.io/l/jlOOFVXJ"><img src="https://s3.ap-southeast-1.amazonaws.com/images.deccanchronicle.com/dc-Cover-u0b349upqugfio195s4lpk8144-20190213120303.Medi.jpeg" width="200" height="100" style="border-radius:10px"></a>
