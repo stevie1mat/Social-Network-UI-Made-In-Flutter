@@ -1,18 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/user.dart';
+import '../config/supabase_config.dart';
 
 class AuthProvider with ChangeNotifier {
-  User? _currentUser;
+  AppUser? _currentUser;
   bool _isLoading = false;
   String? _error;
 
-  User? get currentUser => _currentUser;
+  AppUser? get currentUser => _currentUser;
   bool get isLoading => _isLoading;
   String? get error => _error;
   bool get isAuthenticated => _currentUser != null;
 
+  // Initialize auth state
+  Future<void> initializeAuth() async {
+    try {
+      // Check if Supabase is available
+      if (SupabaseConfig.supabaseUrl.isNotEmpty) {
+        final session = Supabase.instance.client.auth.currentSession;
+        if (session?.user != null) {
+          _currentUser = AppUser(
+            id: session!.user.id,
+            name: session.user.userMetadata?['name'] ?? 'User',
+            email: session.user.email ?? '',
+            profileImage: session.user.userMetadata?['avatar_url'] ?? _mockUser.profileImage,
+            bio: session.user.userMetadata?['bio'] ?? _mockUser.bio,
+            followers: _mockUser.followers,
+            following: _mockUser.following,
+            posts: _mockUser.posts,
+          );
+          notifyListeners();
+        }
+      }
+    } catch (e) {
+      print('Error initializing auth: $e');
+    }
+  }
+
   // Mock user data for demonstration
-  final User _mockUser = User(
+  final AppUser _mockUser = AppUser(
     id: '1',
     name: 'Allan Paterson',
     email: 'allan@example.com',
@@ -28,18 +55,43 @@ class AuthProvider with ChangeNotifier {
     _clearError();
 
     try {
-      // Simulate API call
-      await Future.delayed(Duration(seconds: 2));
-      
-      // Mock authentication - accept any valid email and password
-      if (email.isNotEmpty && password.isNotEmpty) {
-        _currentUser = _mockUser;
-        notifyListeners();
+      // Check if Supabase is available
+      if (Supabase.instance.client.auth.currentSession != null || 
+          SupabaseConfig.supabaseUrl.isNotEmpty) {
+        // Sign in with Supabase
+        final response = await Supabase.instance.client.auth.signInWithPassword(
+          email: email,
+          password: password,
+        );
+
+        if (response.user != null) {
+          // Create user object from Supabase user data
+          _currentUser = AppUser(
+            id: response.user!.id,
+            name: response.user!.userMetadata?['name'] ?? 'User',
+            email: response.user!.email ?? '',
+            profileImage: response.user!.userMetadata?['avatar_url'] ?? _mockUser.profileImage,
+            bio: response.user!.userMetadata?['bio'] ?? _mockUser.bio,
+            followers: _mockUser.followers,
+            following: _mockUser.following,
+            posts: _mockUser.posts,
+          );
+          notifyListeners();
+        } else {
+          _setError('Invalid credentials');
+        }
       } else {
-        _setError('Invalid credentials');
+        // Mock authentication for development
+        await Future.delayed(Duration(seconds: 2));
+        if (email.isNotEmpty && password.isNotEmpty) {
+          _currentUser = _mockUser;
+          notifyListeners();
+        } else {
+          _setError('Invalid credentials');
+        }
       }
     } catch (e) {
-      _setError('An error occurred during sign in');
+      _setError('An error occurred during sign in: ${e.toString()}');
     } finally {
       _setLoading(false);
     }
@@ -49,13 +101,72 @@ class AuthProvider with ChangeNotifier {
     _setLoading(true);
     
     try {
-      // Simulate API call
-      await Future.delayed(Duration(seconds: 1));
+      // Check if Supabase is available
+      if (Supabase.instance.client.auth.currentSession != null || 
+          SupabaseConfig.supabaseUrl.isNotEmpty) {
+        // Sign out from Supabase
+        await Supabase.instance.client.auth.signOut();
+      }
       
       _currentUser = null;
       notifyListeners();
     } catch (e) {
-      _setError('An error occurred during sign out');
+      _setError('An error occurred during sign out: ${e.toString()}');
+    } finally {
+      _setLoading(false);
+    }
+  }
+
+  Future<void> signUp(String email, String password, String name) async {
+    _setLoading(true);
+    _clearError();
+
+    try {
+      // Check if Supabase is available
+      if (Supabase.instance.client.auth.currentSession != null || 
+          SupabaseConfig.supabaseUrl.isNotEmpty) {
+        // Sign up with Supabase
+        final response = await Supabase.instance.client.auth.signUp(
+          email: email,
+          password: password,
+          data: {
+            'name': name,
+          },
+        );
+
+        if (response.user != null) {
+          // Create user object from Supabase user data
+          _currentUser = AppUser(
+            id: response.user!.id,
+            name: name,
+            email: email,
+            profileImage: _mockUser.profileImage,
+            bio: _mockUser.bio,
+            followers: _mockUser.followers,
+            following: _mockUser.following,
+            posts: _mockUser.posts,
+        );
+          notifyListeners();
+        } else {
+          _setError('Failed to create account');
+        }
+      } else {
+        // Mock signup for development
+        await Future.delayed(Duration(seconds: 2));
+        _currentUser = AppUser(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          name: name,
+          email: email,
+          profileImage: _mockUser.profileImage,
+          bio: _mockUser.bio,
+          followers: _mockUser.followers,
+          following: _mockUser.following,
+          posts: _mockUser.posts,
+        );
+        notifyListeners();
+      }
+    } catch (e) {
+      _setError('An error occurred during sign up: ${e.toString()}');
     } finally {
       _setLoading(false);
     }
@@ -75,7 +186,7 @@ class AuthProvider with ChangeNotifier {
       // Simulate API call
       await Future.delayed(Duration(seconds: 1));
       
-      _currentUser = User(
+      _currentUser = AppUser(
         id: _currentUser!.id,
         name: name ?? _currentUser!.name,
         email: _currentUser!.email,

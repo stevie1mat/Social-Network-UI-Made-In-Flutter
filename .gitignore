@@ -98,6 +98,11 @@ app.*.map.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 
 # macOS
+
+# Environment variables
+.env
+.env.local
+.env.production
 **/macos/Flutter/GeneratedPluginRegistrant.swift
 **/macos/Flutter/ephemeral/
 

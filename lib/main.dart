@@ -19,7 +19,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:walkthrough1/connections.dart';
+import 'package:walkthrough1/homepage.dart';
 import 'package:walkthrough1/login.dart';
 import 'package:walkthrough1/mainpage.dart';
 import 'package:walkthrough1/meetup.dart';
@@ -28,8 +30,31 @@ import 'package:walkthrough1/profile.dart';
 import 'package:walkthrough1/providers/auth_provider.dart';
 import 'package:walkthrough1/providers/post_provider.dart';
 import 'package:walkthrough1/providers/notification_provider.dart';
+import 'package:walkthrough1/config/supabase_config.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Load environment variables (optional)
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    print('No .env file found, using default configuration');
+  }
+  
+  // Only initialize Supabase if credentials are available
+  if (SupabaseConfig.supabaseUrl.isNotEmpty && SupabaseConfig.supabaseAnonKey.isNotEmpty) {
+    await Supabase.initialize(
+      url: SupabaseConfig.supabaseUrl,
+      anonKey: SupabaseConfig.supabaseAnonKey,
+    );
+  } else {
+    print('Supabase credentials not found, running in offline mode');
+  }
+  
+  runApp(MyApp());
+}
 
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
@@ -43,13 +68,29 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: AuthWrapper(),
+        home: HomePage(),
       ),
     );
   }
 }
 
-class AuthWrapper extends StatelessWidget {
+class AuthWrapper extends StatefulWidget {
+  @override
+  _AuthWrapperState createState() => _AuthWrapperState();
+}
+
+class _AuthWrapperState extends State<AuthWrapper> {
+  @override
+  void initState() {
+    super.initState();
+    _initializeAuth();
+  }
+
+  Future<void> _initializeAuth() async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    await authProvider.initializeAuth();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(
@@ -63,6 +104,8 @@ class AuthWrapper extends StatelessWidget {
     );
   }
 }
+
+
 
 class MyNavigationBar extends StatefulWidget {
   MyNavigationBar({Key? key}) : super(key: key);

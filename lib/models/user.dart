@@ -1,4 +1,4 @@
-class User {
+class AppUser {
   final String id;
   final String name;
   final String email;
@@ -8,7 +8,7 @@ class User {
   final int following;
   final int posts;
 
-  User({
+  AppUser({
     required this.id,
     required this.name,
     required this.email,
@@ -19,8 +19,8 @@ class User {
     required this.posts,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory AppUser.fromJson(Map<String, dynamic> json) {
+    return AppUser(
       id: json['id'] ?? '',
       name: json['name'] ?? '',
       email: json['email'] ?? '',

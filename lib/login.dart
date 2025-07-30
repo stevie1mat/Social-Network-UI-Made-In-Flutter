@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:walkthrough1/providers/auth_provider.dart';
 import 'package:walkthrough1/mainpage.dart';
 import 'package:walkthrough1/main.dart';
+import 'package:walkthrough1/signup.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -391,14 +392,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                          ),
                                                  TextButton(
                            onPressed: () {
-                             ScaffoldMessenger.of(context).showSnackBar(
-                               SnackBar(
-                                 content: Text('Sign up feature coming soon!'),
-                                 backgroundColor: Colors.orange[400]!,
-                                 behavior: SnackBarBehavior.floating,
-                                 shape: RoundedRectangleBorder(
-                                   borderRadius: BorderRadius.circular(12),
-                                 ),
+                             Navigator.of(context).push(
+                               MaterialPageRoute(
+                                 builder: (context) => SignupPage(),
                                ),
                              );
                            },

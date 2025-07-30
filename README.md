@@ -31,7 +31,15 @@
    ```
 
 ## 🚀 Quick Start
+
+### For Development (Mock Data)
 The app is ready to run out of the box with mock data. All state management is pre-configured and functional.
+
+### For Supabase Authentication
+1. Follow the setup guide in `SUPABASE_SETUP.md`
+2. Create a `.env` file with your Supabase credentials
+3. Run `flutter pub get` to install dependencies
+4. Run `flutter run` to start the app
 
 # 🚀 Features
 
