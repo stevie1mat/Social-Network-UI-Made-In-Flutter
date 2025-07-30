@@ -20,6 +20,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:walkthrough1/connections.dart';
+import 'package:walkthrough1/login.dart';
 import 'package:walkthrough1/mainpage.dart';
 import 'package:walkthrough1/meetup.dart';
 import 'package:walkthrough1/notification.dart';
@@ -42,8 +43,23 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MyNavigationBar(),
+        home: AuthWrapper(),
       ),
+    );
+  }
+}
+
+class AuthWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<AuthProvider>(
+      builder: (context, authProvider, child) {
+        if (authProvider.isAuthenticated) {
+          return MyNavigationBar();
+        } else {
+          return LoginPage();
+        }
+      },
     );
   }
 }

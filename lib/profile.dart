@@ -41,7 +41,22 @@ class Profile extends StatelessWidget {
               'https://static.thenounproject.com/png/658625-200.png',
               width: 35,
             ),
-          )
+          ),
+          Consumer<AuthProvider>(
+            builder: (context, authProvider, child) {
+              return IconButton(
+                icon: Icon(
+                  Icons.logout,
+                  color: Colors.grey[700]!,
+                  size: 20,
+                ),
+                onPressed: () async {
+                  await authProvider.signOut();
+                  // The AuthWrapper will automatically navigate to login
+                },
+              );
+            },
+          ),
         ],
         centerTitle: true,
       ),
