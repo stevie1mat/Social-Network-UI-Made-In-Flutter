@@ -31,8 +31,8 @@ class AuthProvider with ChangeNotifier {
       // Simulate API call
       await Future.delayed(Duration(seconds: 2));
       
-      // Mock authentication
-      if (email == 'test@example.com' && password == 'password') {
+      // Mock authentication - accept any valid email and password
+      if (email.isNotEmpty && password.isNotEmpty) {
         _currentUser = _mockUser;
         notifyListeners();
       } else {
