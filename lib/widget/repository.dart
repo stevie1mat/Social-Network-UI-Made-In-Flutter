@@ -13,12 +13,12 @@ class WhatsappStory {
   final String color;
 
   WhatsappStory({
-    this.mediaType,
-    this.media,
-    this.duration,
-    this.caption,
-    this.when,
-    this.color,
+    required this.mediaType,
+    required this.media,
+    required this.duration,
+    required this.caption,
+    required this.when,
+    required this.color,
   });
 }
 
@@ -26,14 +26,14 @@ class Highlight {
   final String image;
   final String headline;
 
-  Highlight({this.image, this.headline});
+  Highlight({required this.image, required this.headline});
 }
 
 class Gnews {
   final String title;
   final List<Highlight> highlights;
 
-  Gnews({this.title, this.highlights});
+  Gnews({required this.title, required this.highlights});
 }
 
 /// The repository fetches the data from the same directory from git.
@@ -53,7 +53,7 @@ class Repository {
 
   static Future<List<WhatsappStory>> getWhatsappStories() async {
     final response = await get(
-        "https://raw.githubusercontent.com/blackmann/storyexample/master/lib/data/whatsapp.json");
+        Uri.parse("https://raw.githubusercontent.com/blackmann/storyexample/master/lib/data/whatsapp.json"));
 
     final data = jsonDecode(utf8.decode(response.bodyBytes))['data'];
 
@@ -72,7 +72,7 @@ class Repository {
 
   static Future<Gnews> getNews() async {
     final response = await get(
-        "https://raw.githubusercontent.com/blackmann/storyexample/master/lib/data/gnews.json");
+        Uri.parse("https://raw.githubusercontent.com/blackmann/storyexample/master/lib/data/gnews.json"));
 
     // use utf8.decode to make emojis work
     final data = jsonDecode(utf8.decode(response.bodyBytes))['data'];

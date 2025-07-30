@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:timeline_tile/timeline_tile.dart';
+import 'package:provider/provider.dart';
 import 'package:walkthrough1/profiledetails.dart';
+import 'package:walkthrough1/providers/auth_provider.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -20,13 +22,17 @@ class Profile extends StatelessWidget {
         //     size: 18,
         //   ),
         // ),
-        title: Text(
-          'Allan Paterson',
-          style: GoogleFonts.lato(
-              color: Colors.grey[700],
-              fontSize: 15,
-              letterSpacing: 1,
-              fontWeight: FontWeight.normal),
+        title: Consumer<AuthProvider>(
+          builder: (context, authProvider, child) {
+            return Text(
+              authProvider.currentUser?.name ?? 'Allan Paterson',
+              style: GoogleFonts.lato(
+                  color: Colors.grey[700]!,
+                  fontSize: 15,
+                  letterSpacing: 1,
+                  fontWeight: FontWeight.normal),
+            );
+          },
         ),
         actions: [
           Padding(
@@ -57,7 +63,7 @@ class Profile extends StatelessWidget {
                   child: Text(
                     'Bio',
                     style: GoogleFonts.lato(
-                        color: Colors.grey[900],
+                        color: Colors.grey[900]!,
                         fontSize: 15,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold),
@@ -71,7 +77,7 @@ class Profile extends StatelessWidget {
               child: Text(
                 'I lead innovation, design and digital transformation using technology. I am techincal advicer to technical fronthead. I work along side with Google people.',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[700],
+                    color: Colors.grey[700]!,
                     fontSize: 15,
                     letterSpacing: 0,
                     fontWeight: FontWeight.normal),
@@ -97,7 +103,7 @@ class Profile extends StatelessWidget {
                         child: Text(
                           'Connections',
                           style: GoogleFonts.lato(
-                              color: Colors.grey[900],
+                              color: Colors.grey[900]!,
                               fontSize: 16,
                               letterSpacing: 0,
                               fontWeight: FontWeight.bold),
@@ -112,7 +118,7 @@ class Profile extends StatelessWidget {
                   child: Text(
                     '12 mutual',
                     style: GoogleFonts.lato(
-                        color: Colors.grey[600],
+                        color: Colors.grey[600]!,
                         fontSize: 14,
                         letterSpacing: 0,
                         fontWeight: FontWeight.normal),
@@ -155,7 +161,7 @@ class Profile extends StatelessWidget {
                           child: Text(
                             'Amy\nPatterson',
                             style: GoogleFonts.averageSans(
-                                color: Colors.grey[700],
+                                color: Colors.grey[700]!,
                                 fontSize: 14,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.normal),
@@ -189,7 +195,7 @@ class Profile extends StatelessWidget {
                           child: Text(
                             'Buttle\nBenzos',
                             style: GoogleFonts.averageSans(
-                                color: Colors.grey[700],
+                                color: Colors.grey[700]!,
                                 fontSize: 14,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.normal),
@@ -223,7 +229,7 @@ class Profile extends StatelessWidget {
                           child: Text(
                             'Trump\nDonald',
                             style: GoogleFonts.averageSans(
-                                color: Colors.grey[700],
+                                color: Colors.grey[700]!,
                                 fontSize: 14,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.normal),
@@ -257,7 +263,7 @@ class Profile extends StatelessWidget {
                           child: Text(
                             'Amy\nPatterson',
                             style: GoogleFonts.averageSans(
-                                color: Colors.grey[700],
+                                color: Colors.grey[700]!,
                                 fontSize: 14,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.normal),
@@ -286,7 +292,7 @@ class Profile extends StatelessWidget {
                       child: Text(
                     'View All',
                     style: GoogleFonts.averageSans(
-                        color: Colors.grey[600],
+                        color: Colors.grey[600]!,
                         fontSize: 14,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold),
@@ -302,14 +308,14 @@ class Profile extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.person_search_outlined,
-                    color: Colors.orange[400],
+                    color: Colors.orange[400]!,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, top: 4),
                     child: Text(
                       'Sound Bytes',
                       style: GoogleFonts.lato(
-                          color: Colors.grey[900],
+                          color: Colors.grey[900]!,
                           fontSize: 16,
                           letterSpacing: 0,
                           fontWeight: FontWeight.bold),
@@ -327,7 +333,7 @@ class Profile extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 1.1,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  border: Border.all(color: Colors.grey[300]),
+                  border: Border.all(color: Colors.grey[300]!),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -339,7 +345,7 @@ class Profile extends StatelessWidget {
                           child: Text(
                             'Tips For Bloggers Pro',
                             style: GoogleFonts.lato(
-                                color: Colors.grey[700],
+                                color: Colors.grey[700]!,
                                 fontSize: 15,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.bold),
@@ -356,7 +362,7 @@ class Profile extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5)),
-                                  border: Border.all(color: Colors.orange[400]),
+                                  border: Border.all(color: Colors.orange[400]!),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.only(
@@ -364,7 +370,7 @@ class Profile extends StatelessWidget {
                                   child: Text(
                                     'Advice',
                                     style: GoogleFonts.lato(
-                                        color: Colors.orange[400],
+                                        color: Colors.orange[400]!,
                                         fontSize: 13,
                                         letterSpacing: 1,
                                         fontWeight: FontWeight.bold),
@@ -376,7 +382,7 @@ class Profile extends StatelessWidget {
                             Text(
                               'Oct 6 - 7:21',
                               style: GoogleFonts.lato(
-                                  color: Colors.grey[500],
+                                  color: Colors.grey[500]!,
                                   fontSize: 14,
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.bold),
@@ -391,7 +397,7 @@ class Profile extends StatelessWidget {
                       ),
                       child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.orange[400],
+                              color: Colors.orange[400]!,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
                           child: Padding(
@@ -412,7 +418,7 @@ class Profile extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 1.1,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  border: Border.all(color: Colors.grey[300]),
+                  border: Border.all(color: Colors.grey[300]!),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -424,7 +430,7 @@ class Profile extends StatelessWidget {
                           child: Text(
                             'New Video For Editors',
                             style: GoogleFonts.lato(
-                                color: Colors.grey[700],
+                                color: Colors.grey[700]!,
                                 fontSize: 15,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.bold),
@@ -441,7 +447,7 @@ class Profile extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5)),
-                                  border: Border.all(color: Colors.orange[400]),
+                                  border: Border.all(color: Colors.orange[400]!),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.only(
@@ -449,7 +455,7 @@ class Profile extends StatelessWidget {
                                   child: Text(
                                     'Pro Tip',
                                     style: GoogleFonts.lato(
-                                        color: Colors.orange[400],
+                                        color: Colors.orange[400]!,
                                         fontSize: 13,
                                         letterSpacing: 1,
                                         fontWeight: FontWeight.bold),
@@ -461,7 +467,7 @@ class Profile extends StatelessWidget {
                             Text(
                               'Oct 8 - 8:50',
                               style: GoogleFonts.lato(
-                                  color: Colors.grey[500],
+                                  color: Colors.grey[500]!,
                                   fontSize: 14,
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.bold),
@@ -476,7 +482,7 @@ class Profile extends StatelessWidget {
                       ),
                       child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.orange[400],
+                              color: Colors.orange[400]!,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
                           child: Padding(
@@ -508,7 +514,7 @@ class Profile extends StatelessWidget {
                         child: Text(
                           'My activity',
                           style: GoogleFonts.lato(
-                              color: Colors.grey[900],
+                              color: Colors.grey[900]!,
                               fontSize: 16,
                               letterSpacing: 0,
                               fontWeight: FontWeight.bold),
@@ -523,7 +529,7 @@ class Profile extends StatelessWidget {
                   child: Text(
                     'View All',
                     style: GoogleFonts.lato(
-                        color: Colors.grey[600],
+                        color: Colors.grey[600]!,
                         fontSize: 14,
                         letterSpacing: 0,
                         fontWeight: FontWeight.normal),

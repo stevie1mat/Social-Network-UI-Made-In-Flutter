@@ -14,7 +14,7 @@ class ProfileDetails extends StatelessWidget {
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: Colors.grey[700],
+            color: Colors.grey[700]!,
             size: 18,
           ),
         ),
@@ -30,7 +30,7 @@ class ProfileDetails extends StatelessWidget {
                 child: Text(
                   'Profile Details',
                   style: GoogleFonts.lato(
-                      color: Colors.grey[800],
+                      color: Colors.grey[800]!,
                       fontSize: 26,
                       letterSpacing: 0,
                       fontWeight: FontWeight.bold),

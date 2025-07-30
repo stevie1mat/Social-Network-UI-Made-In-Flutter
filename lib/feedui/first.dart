@@ -48,7 +48,7 @@ class FirstFeedUI extends StatelessWidget {
                     child: Text(
                       'Sound Byte',
                       style: GoogleFonts.lato(
-                          color: Colors.grey[700],
+                          color: Colors.grey[700]!,
                           fontSize: 16,
                           letterSpacing: 1,
                           fontWeight: FontWeight.bold),

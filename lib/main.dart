@@ -18,11 +18,15 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:walkthrough1/connections.dart';
 import 'package:walkthrough1/mainpage.dart';
 import 'package:walkthrough1/meetup.dart';
 import 'package:walkthrough1/notification.dart';
 import 'package:walkthrough1/profile.dart';
+import 'package:walkthrough1/providers/auth_provider.dart';
+import 'package:walkthrough1/providers/post_provider.dart';
+import 'package:walkthrough1/providers/notification_provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,15 +34,22 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyNavigationBar(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => PostProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: MyNavigationBar(),
+      ),
     );
   }
 }
 
 class MyNavigationBar extends StatefulWidget {
-  MyNavigationBar({Key key}) : super(key: key);
+  MyNavigationBar({Key? key}) : super(key: key);
 
   @override
   _MyNavigationBarState createState() => _MyNavigationBarState();
@@ -46,7 +57,8 @@ class MyNavigationBar extends StatefulWidget {
 
 class _MyNavigationBarState extends State<MyNavigationBar> {
   int _selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
+  
+  List<Widget> get _widgetOptions => <Widget>[
     MainPage(),
     Profile(),
     Connections(),
@@ -73,31 +85,31 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
                   Icons.home,
                   // color: Colors.grey[500],
                 ),
-                title: SizedBox(),
+                label: '',
                 backgroundColor: Colors.green),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.person,
                 ),
-                title: SizedBox(),
+                label: '',
                 backgroundColor: Colors.yellow),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.search,
               ),
-              title: SizedBox(),
+              label: '',
               backgroundColor: Colors.blue,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.location_on),
-              title: SizedBox(),
+              label: '',
               backgroundColor: Colors.blue,
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.notification_important_outlined,
               ),
-              title: SizedBox(),
+              label: '',
               backgroundColor: Colors.blue,
             ),
           ],
@@ -105,7 +117,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           backgroundColor: Colors.white,
           // selectedItemColor: Colors.orange,
 
-          unselectedItemColor: Colors.grey[500],
+          unselectedItemColor: Colors.grey[500]!,
           selectedFontSize: 14,
           unselectedFontSize: 14,
           onTap: _onItemTapped,

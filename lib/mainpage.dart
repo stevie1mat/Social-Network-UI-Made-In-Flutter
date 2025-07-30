@@ -36,14 +36,14 @@ class MainPage extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 6, left: 15.0),
-                        child: Text(
-                          'Socio Network',
-                          style: GoogleFonts.lato(
-                              color: Colors.grey[700],
-                              fontSize: 16,
-                              letterSpacing: 1,
-                              fontWeight: FontWeight.bold),
-                        ),
+                                            child: Text(
+                      'Socio Network',
+                      style: GoogleFonts.lato(
+                          color: Colors.grey[700]!,
+                          fontSize: 16,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold),
+                    ),
                       ),
                     ],
                   ),

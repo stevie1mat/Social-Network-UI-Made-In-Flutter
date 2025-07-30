@@ -1,41 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:walkthrough1/providers/notification_provider.dart';
 
 class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 40),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: Text(
-                  'Notifications',
-                  style: GoogleFonts.lato(
-                      color: Colors.grey[700],
-                      fontSize: 18,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 12.0),
-                child: Icon(
-                  Icons.notifications_active_outlined,
-                  color: Colors.grey[700],
-                ),
-              )
-            ]),
+      body: Consumer<NotificationProvider>(
+        builder: (context, notificationProvider, child) {
+          return FutureBuilder(
+            future: notificationProvider.loadNotifications(),
+            builder: (context, snapshot) {
+              if (notificationProvider.isLoading) {
+                return Center(child: CircularProgressIndicator());
+              }
+              
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 40),
+                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Notifications',
+                          style: GoogleFonts.lato(
+                              color: Colors.grey[700]!,
+                              fontSize: 18,
+                              letterSpacing: 1,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: Icon(
+                          Icons.notifications_active_outlined,
+                          color: Colors.grey[700],
+                        ),
+                      )
+                    ]),
             SizedBox(height: 40),
             Center(
               child: Text(
                 'Today',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[600],
+                    color: Colors.grey[600]!,
                     fontSize: 15,
                     letterSpacing: 1,
                     fontWeight: FontWeight.normal),
@@ -55,7 +66,7 @@ class NotificationPage extends StatelessWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[200],
+                        color: Colors.grey[200]!,
                         blurRadius: 10.0, // soften the shadow
                         spreadRadius: 2.0, //extend the shadow
                         offset: Offset(
@@ -129,7 +140,7 @@ class NotificationPage extends StatelessWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[200],
+                        color: Colors.grey[200]!,
                         blurRadius: 10.0, // soften the shadow
                         spreadRadius: 2.0, //extend the shadow
                         offset: Offset(
@@ -200,7 +211,7 @@ class NotificationPage extends StatelessWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[200],
+                        color: Colors.grey[200] ?? Colors.grey,
                         blurRadius: 10.0, // soften the shadow
                         spreadRadius: 2.0, //extend the shadow
                         offset: Offset(
@@ -282,7 +293,7 @@ class NotificationPage extends StatelessWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[200],
+                        color: Colors.grey[200] ?? Colors.grey,
                         blurRadius: 10.0, // soften the shadow
                         spreadRadius: 2.0, //extend the shadow
                         offset: Offset(
@@ -356,7 +367,7 @@ class NotificationPage extends StatelessWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[200],
+                        color: Colors.grey[200] ?? Colors.grey,
                         blurRadius: 10.0, // soften the shadow
                         spreadRadius: 2.0, //extend the shadow
                         offset: Offset(
@@ -430,7 +441,7 @@ class NotificationPage extends StatelessWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[200],
+                        color: Colors.grey[200] ?? Colors.grey,
                         blurRadius: 10.0, // soften the shadow
                         spreadRadius: 2.0, //extend the shadow
                         offset: Offset(

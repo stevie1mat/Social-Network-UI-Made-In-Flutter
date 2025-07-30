@@ -24,7 +24,7 @@ class Connections extends StatelessWidget {
                   child: Text(
                     'Connections',
                     style: GoogleFonts.lato(
-                        color: Colors.grey[700],
+                        color: Colors.grey[700]!,
                         fontSize: 20,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold),
@@ -38,7 +38,7 @@ class Connections extends StatelessWidget {
                   child: Text(
                     '275 Total',
                     style: GoogleFonts.lato(
-                        color: Colors.grey[700],
+                        color: Colors.grey[700]!,
                         fontSize: 13,
                         letterSpacing: 1,
                         fontWeight: FontWeight.normal),
@@ -58,11 +58,11 @@ class Connections extends StatelessWidget {
                     prefixIcon: Icon(Icons.search),
                     hintText: '   Search Contacts . . . .',
                     hintStyle: GoogleFonts.lato(
-                        color: Colors.grey[600],
+                        color: Colors.grey[600]!,
                         fontSize: 15,
                         fontWeight: FontWeight.normal),
                     filled: true,
-                    fillColor: Colors.grey[200],
+                    fillColor: Colors.grey[200]!,
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(40.0)),
                       borderSide: BorderSide(color: Colors.transparent),
@@ -87,14 +87,14 @@ class Connections extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 18.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[400], width: 2),
+                          border: Border.all(color: Colors.grey[400]!, width: 2),
                           borderRadius: BorderRadius.circular(10)),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           '#Socio',
                           style: GoogleFonts.lato(
-                              color: Colors.grey[700],
+                              color: Colors.grey[700]!,
                               fontSize: 14,
                               letterSpacing: 1,
                               fontWeight: FontWeight.bold),
@@ -106,14 +106,14 @@ class Connections extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 18.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[400], width: 2),
+                          border: Border.all(color: Colors.grey[400]!, width: 2),
                           borderRadius: BorderRadius.circular(10)),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           '#Trend',
                           style: GoogleFonts.lato(
-                              color: Colors.grey[700],
+                              color: Colors.grey[700]!,
                               fontSize: 14,
                               letterSpacing: 1,
                               fontWeight: FontWeight.bold),
@@ -125,14 +125,14 @@ class Connections extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 18.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[400], width: 2),
+                          border: Border.all(color: Colors.grey[400]!, width: 2),
                           borderRadius: BorderRadius.circular(10)),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           '#Slack',
                           style: GoogleFonts.lato(
-                              color: Colors.grey[700],
+                              color: Colors.grey[700]!,
                               fontSize: 14,
                               letterSpacing: 1,
                               fontWeight: FontWeight.bold),
@@ -144,14 +144,14 @@ class Connections extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 18.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[400], width: 2),
+                          border: Border.all(color: Colors.grey[400]!, width: 2),
                           borderRadius: BorderRadius.circular(10)),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           '#Designer',
                           style: GoogleFonts.lato(
-                              color: Colors.grey[700],
+                              color: Colors.grey[700]!,
                               fontSize: 14,
                               letterSpacing: 1,
                               fontWeight: FontWeight.bold),
@@ -170,7 +170,7 @@ class Connections extends StatelessWidget {
               child: Text(
                 'A',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[700],
+                    color: Colors.grey[700]!,
                     fontSize: 15,
                     letterSpacing: 1,
                     fontWeight: FontWeight.bold),
@@ -203,7 +203,7 @@ class Connections extends StatelessWidget {
                 title: Text(
                   'Alan Patterson',
                   style: GoogleFonts.lato(
-                      color: Colors.grey[700],
+                      color: Colors.grey[700]!,
                       fontSize: 18,
                       letterSpacing: 1,
                       fontWeight: FontWeight.bold),
@@ -211,7 +211,7 @@ class Connections extends StatelessWidget {
                 subtitle: Text(
                   'Software Engineer At Google',
                   style: GoogleFonts.lato(
-                      color: Colors.grey[500],
+                      color: Colors.grey[500]!,
                       fontSize: 15,
                       letterSpacing: 1,
                       fontWeight: FontWeight.normal),
@@ -234,7 +234,7 @@ class Connections extends StatelessWidget {
               title: Text(
                 'Adam Mathew',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[700],
+                    color: Colors.grey[700]!,
                     fontSize: 18,
                     letterSpacing: 1,
                     fontWeight: FontWeight.bold),
@@ -242,7 +242,7 @@ class Connections extends StatelessWidget {
               subtitle: Text(
                 'Life Science Engineer At Microsoft',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[500],
+                    color: Colors.grey[500]!,
                     fontSize: 15,
                     letterSpacing: 1,
                     fontWeight: FontWeight.normal),
@@ -264,7 +264,7 @@ class Connections extends StatelessWidget {
               title: Text(
                 'Amaz Benzos',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[700],
+                    color: Colors.grey[700]!,
                     fontSize: 18,
                     letterSpacing: 1,
                     fontWeight: FontWeight.bold),
@@ -272,7 +272,7 @@ class Connections extends StatelessWidget {
               subtitle: Text(
                 'Simple Guy At Amazon',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[500],
+                    color: Colors.grey[500]!,
                     fontSize: 15,
                     letterSpacing: 1,
                     fontWeight: FontWeight.normal),
@@ -286,7 +286,7 @@ class Connections extends StatelessWidget {
               child: Text(
                 'B',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[700],
+                    color: Colors.grey[700]!,
                     fontSize: 15,
                     letterSpacing: 1,
                     fontWeight: FontWeight.bold),
@@ -308,7 +308,7 @@ class Connections extends StatelessWidget {
               title: Text(
                 'Birat Kholi',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[700],
+                    color: Colors.grey[700]!,
                     fontSize: 18,
                     letterSpacing: 1,
                     fontWeight: FontWeight.bold),
@@ -316,7 +316,7 @@ class Connections extends StatelessWidget {
               subtitle: Text(
                 'Leg Square Engineer At Cricket',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[500],
+                    color: Colors.grey[500]!,
                     fontSize: 15,
                     letterSpacing: 1,
                     fontWeight: FontWeight.normal),
@@ -338,7 +338,7 @@ class Connections extends StatelessWidget {
               title: Text(
                 'Bengel Priya',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[700],
+                    color: Colors.grey[700]!,
                     fontSize: 18,
                     letterSpacing: 1,
                     fontWeight: FontWeight.bold),
@@ -346,7 +346,7 @@ class Connections extends StatelessWidget {
               subtitle: Text(
                 'Software Engineer At Google',
                 style: GoogleFonts.lato(
-                    color: Colors.grey[500],
+                    color: Colors.grey[500]!,
                     fontSize: 15,
                     letterSpacing: 1,
                     fontWeight: FontWeight.normal),

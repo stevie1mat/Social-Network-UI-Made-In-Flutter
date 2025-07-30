@@ -48,7 +48,7 @@ class FourthFeedUI extends StatelessWidget {
                     child: Text(
                       'Sound Byte',
                       style: GoogleFonts.lato(
-                          color: Colors.grey[700],
+                          color: Colors.grey[700]!,
                           fontSize: 16,
                           letterSpacing: 1,
                           fontWeight: FontWeight.bold),
@@ -141,7 +141,7 @@ class FourthFeedUI extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 1.1,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
-              border: Border.all(color: Colors.grey[300]),
+              border: Border.all(color: Colors.grey[300] ?? Colors.grey),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -170,7 +170,7 @@ class FourthFeedUI extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(40)),
-                              border: Border.all(color: Colors.orange[400]),
+                              border: Border.all(color: Colors.orange[400] ?? Colors.orange),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(

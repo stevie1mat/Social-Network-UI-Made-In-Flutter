@@ -45,11 +45,11 @@ class SixthFeedUI extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 15.0, top: 13),
                 child: Text(
                   'Sound Byte',
-                  style: GoogleFonts.lato(
-                      color: Colors.grey[700],
-                      fontSize: 16,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.bold),
+                                        style: GoogleFonts.lato(
+                          color: Colors.grey[700]!,
+                          fontSize: 16,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(

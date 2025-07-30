@@ -1,19 +1,18 @@
 //CODE FROM STORY_VIEW EXAMPLE
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+// import 'package:story_view/story_view.dart';  // Commented out due to compatibility issues
 import 'widget/repository.dart';
-import 'package:story_view/story_view.dart';
-import 'widget/util.dart';
 
 class StatusFull extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return StoryViewDelegate(
-              stories: snapshot.data,
+      body: FutureBuilder<List<WhatsappStory>>(
+        builder: (context, AsyncSnapshot<List<WhatsappStory>> snapshot) {
+          if (snapshot.hasData && snapshot.data != null) {
+            return CustomStoryViewDelegate(
+              stories: snapshot.data!,
             );
           }
 
@@ -35,60 +34,22 @@ class StatusFull extends StatelessWidget {
   }
 }
 
-class StoryViewDelegate extends StatefulWidget {
+class CustomStoryViewDelegate extends StatefulWidget {
   final List<WhatsappStory> stories;
 
-  StoryViewDelegate({this.stories});
+  CustomStoryViewDelegate({required this.stories});
 
   @override
-  _StoryViewDelegateState createState() => _StoryViewDelegateState();
+  _CustomStoryViewDelegateState createState() => _CustomStoryViewDelegateState();
 }
 
-class _StoryViewDelegateState extends State<StoryViewDelegate> {
-  final StoryController controller = StoryController();
-  List<StoryItem> storyItems = [];
-
+class _CustomStoryViewDelegateState extends State<CustomStoryViewDelegate> {
+  int currentStoryIndex = 0;
   String when = "";
 
   @override
   void initState() {
     super.initState();
-    widget.stories.forEach((story) {
-      if (story.mediaType == MediaType.text) {
-        storyItems.add(
-          StoryItem.text(
-            title: story.caption,
-            backgroundColor: HexColor(story.color),
-            duration: Duration(
-              milliseconds: (story.duration * 1000).toInt(),
-            ),
-          ),
-        );
-      }
-
-      if (story.mediaType == MediaType.image) {
-        storyItems.add(StoryItem.pageImage(
-          url: story.media,
-          controller: controller,
-          caption: story.caption,
-          duration: Duration(
-            milliseconds: (story.duration * 1000).toInt(),
-          ),
-        ));
-      }
-
-      if (story.mediaType == MediaType.video) {
-        storyItems.add(
-          StoryItem.pageVideo(
-            story.media,
-            controller: controller,
-            duration: Duration(milliseconds: (story.duration * 1000).toInt()),
-            caption: story.caption,
-          ),
-        );
-      }
-    });
-
     when = widget.stories[0].when;
   }
 
@@ -128,40 +89,100 @@ class _StoryViewDelegateState extends State<StoryViewDelegate> {
     );
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
+  void _nextStory() {
+    if (currentStoryIndex < widget.stories.length - 1) {
+      setState(() {
+        currentStoryIndex++;
+        when = widget.stories[currentStoryIndex].when;
+      });
+    } else {
+      Navigator.of(context).pop();
+    }
+  }
+
+  void _previousStory() {
+    if (currentStoryIndex > 0) {
+      setState(() {
+        currentStoryIndex--;
+        when = widget.stories[currentStoryIndex].when;
+      });
+    }
+  }
+
+  Widget _buildStoryContent() {
+    final story = widget.stories[currentStoryIndex];
+    
+    switch (story.mediaType) {
+      case MediaType.image:
+        return Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: Image.network(
+            story.media,
+            fit: BoxFit.cover,
+          ),
+        );
+      case MediaType.video:
+        return Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.black,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.play_circle_outline, size: 64, color: Colors.white),
+                SizedBox(height: 16),
+                Text(
+                  'Video: ${story.caption}',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+        );
+      case MediaType.text:
+        return Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Color(int.parse(story.color.replaceAll('#', '0xFF'))),
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.all(32),
+              child: Text(
+                story.caption,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        StoryView(
-          storyItems: storyItems,
-          controller: controller,
-          onComplete: () {
-            Navigator.of(context).pop();
-          },
-          onVerticalSwipeComplete: (v) {
-            if (v == Direction.down) {
-              Navigator.pop(context);
+        GestureDetector(
+          onTapDown: (details) {
+            final screenWidth = MediaQuery.of(context).size.width;
+            if (details.globalPosition.dx < screenWidth / 2) {
+              _previousStory();
+            } else {
+              _nextStory();
             }
           },
-          onStoryShow: (storyItem) {
-            int pos = storyItems.indexOf(storyItem);
-
-            // the reason for doing setState only after the first
-            // position is becuase by the first iteration, the layout
-            // hasn't been laid yet, thus raising some exception
-            // (each child need to be laid exactly once)
-            if (pos > 0) {
-              setState(() {
-                when = widget.stories[pos].when;
-              });
-            }
-          },
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            color: Colors.black,
+            child: _buildStoryContent(),
+          ),
         ),
         Container(
           padding: EdgeInsets.only(
@@ -170,7 +191,29 @@ class _StoryViewDelegateState extends State<StoryViewDelegate> {
             right: 16,
           ),
           child: _buildProfileView(),
-        )
+        ),
+        // Progress indicator
+        Positioned(
+          top: 100,
+          left: 16,
+          right: 16,
+          child: Row(
+            children: List.generate(widget.stories.length, (index) {
+              return Expanded(
+                child: Container(
+                  height: 2,
+                  margin: EdgeInsets.symmetric(horizontal: 2),
+                  decoration: BoxDecoration(
+                    color: index <= currentStoryIndex 
+                        ? Colors.white 
+                        : Colors.white.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(1),
+                  ),
+                ),
+              );
+            }),
+          ),
+        ),
       ],
     );
   }

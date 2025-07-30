@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 
 class EventPage extends StatelessWidget {
   @override
@@ -27,8 +27,8 @@ class EventPage extends StatelessWidget {
                             center: LatLng(45.5231, -122.6765),
                             zoom: 13.0,
                           ),
-                          layers: [
-                            TileLayerOptions(
+                          children: [
+                            TileLayer(
                                 urlTemplate:
                                     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                                 subdomains: ['a', 'b', 'c']),

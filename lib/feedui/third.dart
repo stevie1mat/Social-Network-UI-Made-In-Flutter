@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 
 class ThirdFeedUI extends StatelessWidget {
   @override
@@ -50,7 +50,7 @@ class ThirdFeedUI extends StatelessWidget {
                     child: Text(
                       'Sound Byte',
                       style: GoogleFonts.lato(
-                          color: Colors.grey[700],
+                          color: Colors.grey[700]!,
                           fontSize: 16,
                           letterSpacing: 1,
                           fontWeight: FontWeight.bold),
@@ -218,8 +218,8 @@ class ThirdFeedUI extends StatelessWidget {
                       center: LatLng(45.5231, -122.6765),
                       zoom: 13.0,
                     ),
-                    layers: [
-                      TileLayerOptions(
+                    children: [
+                      TileLayer(
                           urlTemplate:
                               'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                           subdomains: ['a', 'b', 'c']),

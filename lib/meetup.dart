@@ -97,7 +97,7 @@ class Meetup extends StatelessWidget {
                               child: Text(
                                 'at Sudney, Australia',
                                 style: GoogleFonts.lato(
-                                    color: Colors.grey[500],
+                                    color: Colors.grey[500]!,
                                     fontSize: 14,
                                     letterSpacing: 1,
                                     fontWeight: FontWeight.normal),

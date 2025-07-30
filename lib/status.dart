@@ -24,7 +24,7 @@ class Status extends StatelessWidget {
                         padding: const EdgeInsets.all(2.0),
                         decoration: BoxDecoration(
                             border:
-                                Border.all(color: Colors.yellow[600], width: 2),
+                                Border.all(color: Colors.yellow[600] ?? Colors.yellow, width: 2),
                             borderRadius: BorderRadius.circular(140)),
                         child: CircleAvatar(
                           backgroundImage: NetworkImage(
@@ -52,14 +52,14 @@ class Status extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: Text(
-                  'Sound Byte',
-                  style: GoogleFonts.lato(
-                      color: Colors.grey[700],
-                      fontSize: 12,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.normal),
-                ),
+                                  child: Text(
+                    'Sound Byte',
+                    style: GoogleFonts.lato(
+                        color: Colors.grey[700]!,
+                        fontSize: 12,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.normal),
+                  ),
               ),
             ],
           ),
@@ -89,14 +89,14 @@ class Status extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
-                child: Text(
-                  'Chris Pyne',
-                  style: GoogleFonts.lato(
-                      color: Colors.grey[700],
-                      fontSize: 12,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.normal),
-                ),
+                                  child: Text(
+                    'Chris Pyne',
+                    style: GoogleFonts.lato(
+                        color: Colors.grey[700]!,
+                        fontSize: 12,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.normal),
+                  ),
               ),
             ],
           ),
@@ -123,7 +123,7 @@ class Status extends StatelessWidget {
                           padding: const EdgeInsets.all(2.0),
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  color: Colors.yellow[600], width: 2),
+                                  color: Colors.yellow[600] ?? Colors.yellow, width: 2),
                               borderRadius: BorderRadius.circular(140)),
                           child: CircleAvatar(
                             backgroundImage: NetworkImage(
@@ -138,7 +138,7 @@ class Status extends StatelessWidget {
                   child: Text(
                     'Matt Redman',
                     style: GoogleFonts.lato(
-                        color: Colors.grey[700],
+                        color: Colors.grey[700]!,
                         fontSize: 12,
                         letterSpacing: 1,
                         fontWeight: FontWeight.normal),
@@ -162,7 +162,7 @@ class Status extends StatelessWidget {
                         padding: const EdgeInsets.all(2.0),
                         decoration: BoxDecoration(
                             border:
-                                Border.all(color: Colors.yellow[600], width: 2),
+                                Border.all(color: Colors.yellow[600] ?? Colors.yellow, width: 2),
                             borderRadius: BorderRadius.circular(140)),
                         child: CircleAvatar(
                           backgroundImage: NetworkImage(
@@ -177,7 +177,7 @@ class Status extends StatelessWidget {
                 child: Text(
                   'Virat Kholi',
                   style: GoogleFonts.lato(
-                      color: Colors.grey[700],
+                      color: Colors.grey[700]!,
                       fontSize: 12,
                       letterSpacing: 1,
                       fontWeight: FontWeight.normal),
